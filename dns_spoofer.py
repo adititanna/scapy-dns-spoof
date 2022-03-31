@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+
+# Here we want to modify requests, but scapy cannot be used to intercept or drop packets
+# Thus, here we receive a req., then create a copy and modify the request and send both to the target
+# Target receives 2 requests but responds to the request it receives first.
+# Thus we use a QUEUE to trap packets i.e. pause them so that we can modify and send 1 request only
+# Same method used for responses.. trap the response, modify and send 1 response.
 import netfilterqueue
 import subprocess
 import scapy.all as scapy
